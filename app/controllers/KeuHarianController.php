@@ -106,7 +106,7 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
             $total_harga        = $this->request->getPost('total_harga');            
             $debit              = $this->request->getPost('debit');            
             $kredit             = $this->request->getPost('kredit');            
-            $keterangan         = $this->request->getPost('keterangan');            
+            $keterangan         = $this->request->getPost('keterangan');
             $pelaku             = $this->request->getPost('pelaku');            
             
             $keu_harian               = KeuHarian::findFirst("id='$id'");
@@ -123,7 +123,7 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
                 'total_harga'       => $total_harga,
                 'debit'             => $debit,
                 'kredit'            => $kredit,
-                'keterangan'        => $kredit,
+                'keterangan'        => $keterangan,
                 'pelaku'            => $pelaku,
                
             ));

@@ -1,7 +1,7 @@
 <?php
 use Phalcon\Mvc\View;
 use Phalcon\Security;
-
+use Phalcon\Mvc\Model\Criteria;
 
 class UserController extends \Phalcon\Mvc\Controller
 {
@@ -34,6 +34,23 @@ class UserController extends \Phalcon\Mvc\Controller
     {
         $data_user = User::findFirst("id='$id'");
         die(json_encode($data_user));
+    }
+
+    public function searchAction()
+    {
+        if ($this->request->isPost()) {
+            $query = Criteria::fromInput($this->di, "User", $this->request->getPost());
+            $this->persistent->searchParams = $query->getParams();
+        } 
+
+        $parameters = array();
+
+        if ($this->persistent->searchParams) {
+            $parameters = $this->persistent->searchParams;
+        }
+
+        $user = User::find($parameters);
+        $this->view->search=$user;
     }
 
     public function addUserAction()

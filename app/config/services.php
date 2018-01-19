@@ -113,3 +113,8 @@ $di->setShared('session', function () {
 
     return $session;
 });
+
+// Helper View
+$di->set('Helpers', function(){
+    return new Helpers();
+});

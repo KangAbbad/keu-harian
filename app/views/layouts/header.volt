@@ -10,7 +10,7 @@
 <!-- Ionicons -->
 {{ stylesheet_link("assets/bower_components/Ionicons/css/ionicons.min.css") }}
 <!-- DataTables -->
-<!-- {{ stylesheet_link("assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css") }} -->
+{{ stylesheet_link("assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css") }}
 <!-- Theme style -->
 {{ stylesheet_link("assets/dist/css/AdminLTE.min.css") }}
 <!-- AdminLTE Skins. Choose a skin from the css/skins

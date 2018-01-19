@@ -75,7 +75,7 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
                 <select class="form-control" name="cabang_id">
-                  {{ Helpers.dataCabang() }}
+                  <?= $this->Helpers->dataCabang() ?>
                 </select>
               </div>
               <br>
@@ -97,7 +97,7 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-info-circle"></i></span>
                 <select class="form-control" name="akun_id">
-                  {{ Helpers.dataAkun() }}
+                  <?= $this->Helpers->dataAkun() ?>
                 </select>
               </div>
               <br>
@@ -118,7 +118,7 @@
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-list-ul"></i></span>
                 <select class="form-control" name="satuan_barang_id">
-                  {{ Helpers.dataSatuanBarang() }}
+                  <?= $this->Helpers->dataSatuanBarang() ?>
                 </select>
               </div>
               <br>
@@ -150,7 +150,7 @@
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-blind"></i></span>
                   <select class="form-control" name="pelaku">
-                    {{ Helpers.dataUser() }}
+                    <?= $this->Helpers->dataUser() ?>
                   </select>
                 </div>
               </div>
@@ -212,7 +212,7 @@ function addKeuHarian() {
   $.ajax({
       method: "POST",
       dataType: "json",
-      url: "{{url('keu_harian/addKeuHarian')}}",
+      url: "<?= $this->url->get('keu_harian/addKeuHarian') ?>",
       data: $('form.addKeuHarian').serialize(),
       success: function(res) {
           new PNotify({
@@ -249,7 +249,7 @@ function send_data_edit(id) {
   $.ajax({
       method: "POST",
       dataType: "json",
-      url: "{{url('keu_harian/getData')}}/" + id,
+      url: "<?= $this->url->get('keu_harian/getData') ?>/" + id,
       data: $('form.addKeuHarian').serialize(),
       success: function(res) {
           $('input[name=id]').val(res.id);
@@ -273,7 +273,7 @@ function editKeuHarian() {
   $.ajax({
       method: "POST",
       dataType: "json",
-      url: "{{url('keu_harian/editKeuHarian')}}",
+      url: "<?= $this->url->get('keu_harian/editKeuHarian') ?>",
       data: $('form.addKeuHarian').serialize(),
       success: function(res) {
           new PNotify({
@@ -307,7 +307,7 @@ function deleteKeuHarian() {
   $.ajax({
       method: "POST",
       dataType: "json",
-      url: "{{url('keu_harian/deleteKeuHarian')}}",
+      url: "<?= $this->url->get('keu_harian/deleteKeuHarian') ?>",
       data: $('form.deleteKeuHarian').serialize(),
       success: function(res) {
           new PNotify({
@@ -332,7 +332,7 @@ function deleteKeuHarian() {
 function listKeuHarian(){
   $.ajax({
     method: "GET",
-    url: "{{ url('keu_harian/listKeuHarian') }}",
+    url: "<?= $this->url->get('keu_harian/listKeuHarian') ?>",
     dataType: "html",
     success: function(res){
       $('#listKeuHarian').html(res);
