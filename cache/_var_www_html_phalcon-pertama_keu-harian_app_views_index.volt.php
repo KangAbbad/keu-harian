@@ -333,6 +333,7 @@
                 </a>
                 <ul class="treeview-menu" style="display: block;">
                   <li><a href="keu_harian"><i class="fa fa-circle-o"></i> Keuangan Harian</a></li>
+                  <li><a href="rekap_harian"><i class="fa fa-circle-o"></i> Rekap Harian</a></li>
                 </ul>
               </li>
         </ul>

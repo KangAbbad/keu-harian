@@ -86,4 +86,44 @@ class RefCabang extends \Phalcon\Mvc\Model
         return parent::findFirst($parameters);
     }
 
+    // public function getData() 
+    // {
+
+    //    $requestData = $_REQUEST;
+
+    //    $sql = "SELECT * FROM RefCabang";
+    //    $query = $this->modelsManager->executeQuery($sql);
+
+    //    $data = array();
+    //    $no = $requestData['start']+1;
+
+    //    foreach($query as $key => $value) {
+    //       $dataCabang = array();
+    //       $dataCabang[] = $no;
+    //       $dataCabang[] = $value->id;
+    //       $dataCabang[] = $value->nama;
+    //       $dataCabang[] = $value->alamat;
+    //       $dataCabang[] = $value->ketua;
+    //       $dataCabang[] = $value->lat;
+    //       $dataCabang[] = $value->long;
+    //       $dataCabang[] = '
+    //         <div class="btn-group-vertical">
+    //             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-default" onclick="return send_data_edit(\''.$value->id.'\');">Edit</button>
+    //             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete" onclick="return send_data_delete(\''.$value->id.'\');">Delete</button>
+    //         </div>
+    //         ';
+          
+    //       $data[] = $dataCabang;
+    //       $no++;
+    //    }
+
+    //    $json_data = array(
+    //       "draw"            => intval( $requestData['draw'] ),
+    //       "recordsTotal"    => intval( $totalData ),
+    //       "recordsFiltered" => intval( $totalFiltered ),
+    //       "data"            => $data
+    //    );
+
+    //    return $json_data;
+    // }
 }

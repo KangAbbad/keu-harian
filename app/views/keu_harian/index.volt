@@ -307,7 +307,7 @@ function deleteKeuHarian() {
   $.ajax({
       method: "POST",
       dataType: "json",
-      url: "{{url('keu_harian/deleteKeuHarian')}}",
+      url: "{{ url('keu_harian/deleteKeuHarian') }}",
       data: $('form.deleteKeuHarian').serialize(),
       success: function(res) {
           new PNotify({
@@ -344,6 +344,7 @@ $(document).ready(function(){
   var dataTable = $('#data_keu_harian').DataTable({
     "processing" : false,
     "serverSide" : true,
+    "searching": true,
     "ajax": {
       url: "keu_harian/getAjax",
       type: "post",

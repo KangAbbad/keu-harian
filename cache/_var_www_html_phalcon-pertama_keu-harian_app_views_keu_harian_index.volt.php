@@ -344,6 +344,7 @@ $(document).ready(function(){
   var dataTable = $('#data_keu_harian').DataTable({
     "processing" : false,
     "serverSide" : true,
+    "searching": true,
     "ajax": {
       url: "keu_harian/getAjax",
       type: "post",

@@ -65,7 +65,9 @@
               </div>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
-                <input class="form-control" name="cabang_id" placeholder="Cabang" type="text">
+                <select class="form-control" name="cabang_id">
+                  <?= $this->Helpers->dataCabang() ?>
+                </select>
               </div>
               <br>
               <div class="input-group">
