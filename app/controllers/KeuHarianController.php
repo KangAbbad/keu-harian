@@ -55,10 +55,15 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
             
             $date = new DateTime($tanggal);
             $tanggal_id = $date->format('ymd');
+
             $id = $cabang_id.$tanggal_id;
 
+            $query = "SELECT * FROM KeuHarian WHERE id LIKE '".$id."%' ";
+            $res = str_pad(mysqli_num_rows($query)+1, 2, "0", STR_PAD_LEFT);
+            $result = $id.$res;
+
             $keu_harian->assign(array(
-                'id' => $id,
+                'id' => $result,
                 'cabang_id' => $cabang_id,
                 'tanggal' => $tanggal,
                 'nama_barang' => $nama_barang,
@@ -75,7 +80,7 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
 
             if($keu_harian->save()){
                 $notif['title']="Sukses";
-                $notif['text']="Aktifkan status RBT&GRATIS ganti di *123*1819# atau telpon ke 1819. Rp5rb/30hr. Info:817";
+                $notif['text']="Berhasil input data";
                 $notif['type']="info";
             } else {
                 $pesan_error = $keu_harian -> getMessages();
@@ -84,7 +89,7 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
                     $data_pesan_error = "$pesanError";
                 }
                 $notif['title']="Error";
-                $notif['text']="Waduh bang, data kaga kesimpen!";
+                $notif['text']="Isikan field dengan benar!";
                 $notif['type']="error";
             }
             echo json_encode($notif);

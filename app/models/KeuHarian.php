@@ -153,14 +153,14 @@ class KeuHarian extends \Phalcon\Mvc\Model
             8 => 'debit',
             9 => 'kredit',
             10 => 'keterangan',
-            11 => 'pelaku',
+            11 => 'pelaku'
         );
         // b.cabang_id, b.tanggal, b.nama_barang, b.akun_id, b.jml_barang, b.harga_satuan, b.satuan_barang_id, b.total_harga, b.debit, b.kredit, b.keterangan, b.pelaku
         // $sql = "SELECT b.*, a.nama FROM KeuHarian AS b INNER JOIN RefCabang as a ON (b.cabang_id=a.id)";
         // $sql = "SELECT A.*,B.nama  FROM KeuHarian AS A INNER JOIN RefCabang as B ON A.cabang_id=B.id";
         // $sql = "SELECT kh.*, rc.nama as namacabang FROM RefCabang rc, KeuHarian kh WHERE kh.cabang_id = rc.nama";
         // $sql = "SELECT kh.*, rc.nama as namacabang FROM KeuHarian kh, RefCabang rc WHERE kh.cabang_id = rc.id GROUP BY kh.tanggal";
-
+        
         $sql = "SELECT * FROM KeuHarian";
         $query = $this->modelsManager->executeQuery($sql);
         $totalData = count($query);

@@ -230,12 +230,15 @@ function addKeuHarian() {
           //         DataTable().reload();
           //     }, 2000);
           // }
-          // $('#data_keu_harian').DataTable().ajax.reload();
-          $(document).ajaxStop(function(){
-            setTimeout(function(){
-              window.location.reload();
-            }, 1000);
-          });
+          $('#data_keu_harian').DataTable().ajax.reload();
+          $('form.addKeuHarian')[0].reset();
+          // $(document).ajaxStop(function(){
+          //   setTimeout(function(){
+          //     window.location.reload();
+          //   }, 1000);
+          // });
+
+
       }
   });
 }
@@ -286,11 +289,12 @@ function editKeuHarian() {
               }
           });
           $('.close-modal').click();
-          $(document).ajaxStop(function(){
-            setTimeout(function(){
-              window.location.reload();
-            }, 1000);
-          });
+          // $(document).ajaxStop(function(){
+          //   setTimeout(function(){
+          //     window.location.reload();
+          //   }, 1000);
+          // });
+          $('#data_keu_harian').DataTable().ajax.reload();
       }
   });
 }
@@ -320,11 +324,12 @@ function deleteKeuHarian() {
               }
           });
           $('.close-modal').click();
-          $(document).ajaxStop(function(){
-            setTimeout(function(){
-              window.location.reload();
-            }, 1000);
-          });
+          // $(document).ajaxStop(function(){
+          //   setTimeout(function(){
+          //     window.location.reload();
+          //   }, 1000);
+          // });
+          $('#data_keu_harian').DataTable().ajax.reload();
         }
     });
   }
@@ -371,3 +376,12 @@ function hitung() {
   $('#total_bayar').val(total_bayar);
 }
 </script>
+
+<!-- PR 
+jika pemasukan : debit=total bayar, kredit=0
+jika pengeluarn debit=0, kredit=total bayar
+di bikin g bisa di edit aja
+otomatis kaya total bayar
+kemudian untuk angka jgn bisa di isi huruf atau simbol2
+form wajib di isi
+-->
