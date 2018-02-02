@@ -9,7 +9,10 @@
 <!-- AdminLTE for demo purposes -->
 <?= $this->tag->javascriptInclude('assets/dist/js/demo.js') ?>
 <!-- page script -->
-
+<!-- Pnotify -->
 <?= $this->tag->javascriptInclude('assets/pnotify/pnotify.js') ?>
 <?= $this->tag->javascriptInclude('assets/pnotify/pnotify.buttons.js') ?>
 <?= $this->tag->javascriptInclude('assets/pnotify/pnotify.nonblock.js') ?>
+
+<!-- iCheck for radio button -->
+<?= $this->tag->javascriptInclude('assets/plugins/iCheck/icheck.min.js') ?>

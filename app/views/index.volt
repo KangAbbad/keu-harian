@@ -3,7 +3,7 @@
     <head>
         {% include "layouts/header.volt" %}
     </head>
-    <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+    <body class="hold-transition skin-blue">
         <div class="wrapper">
         {% include "layouts/navbar.volt" %}
         {% include "layouts/sidebar.volt" %}

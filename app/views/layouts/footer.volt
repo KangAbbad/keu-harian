@@ -9,7 +9,10 @@
 <!-- AdminLTE for demo purposes -->
 {{ javascript_include("assets/dist/js/demo.js") }}
 <!-- page script -->
-
+<!-- Pnotify -->
 {{ javascript_include("assets/pnotify/pnotify.js") }}
 {{ javascript_include("assets/pnotify/pnotify.buttons.js") }}
 {{ javascript_include("assets/pnotify/pnotify.nonblock.js") }}
+
+<!-- iCheck for radio button -->
+{{ javascript_include("assets/plugins/iCheck/icheck.min.js") }}

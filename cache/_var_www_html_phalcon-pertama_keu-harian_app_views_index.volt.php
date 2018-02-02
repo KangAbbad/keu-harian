@@ -12,6 +12,9 @@
 <?= $this->tag->stylesheetLink('assets/bower_components/font-awesome/css/font-awesome.min.css') ?>
 <!-- Ionicons -->
 <?= $this->tag->stylesheetLink('assets/bower_components/Ionicons/css/ionicons.min.css') ?>
+<!-- iCheck for radio button -->
+<?= $this->tag->stylesheetLink('assets/plugins/iCheck/all.css') ?>
+<?= $this->tag->stylesheetLink('assets/plugins/iCheck/flat/blue.css') ?>
 <!-- DataTables -->
 <?= $this->tag->stylesheetLink('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') ?>
 <!-- Theme style -->
@@ -41,8 +44,10 @@
 <?= $this->tag->javascriptInclude('assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') ?>
 <!-- Pnotify -->
 <?= $this->tag->javascriptInclude('assets/pnotify/pnotify.js') ?>
+<!-- Bootstrap Validation -->
+<?= $this->tag->javascriptInclude('assets/bower_components/bootstrap-validator/dist/validator.min.js') ?>
     </head>
-    <body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+    <body class="hold-transition skin-blue">
         <div class="wrapper">
         <header class="main-header">
     <!-- Logo -->
@@ -333,7 +338,6 @@
                 </a>
                 <ul class="treeview-menu" style="display: block;">
                   <li><a href="keu_harian"><i class="fa fa-circle-o"></i> Keuangan Harian</a></li>
-                  <li><a href="rekap_harian"><i class="fa fa-circle-o"></i> Rekap Harian</a></li>
                 </ul>
               </li>
         </ul>
@@ -366,10 +370,13 @@
 <!-- AdminLTE for demo purposes -->
 <?= $this->tag->javascriptInclude('assets/dist/js/demo.js') ?>
 <!-- page script -->
-
+<!-- Pnotify -->
 <?= $this->tag->javascriptInclude('assets/pnotify/pnotify.js') ?>
 <?= $this->tag->javascriptInclude('assets/pnotify/pnotify.buttons.js') ?>
 <?= $this->tag->javascriptInclude('assets/pnotify/pnotify.nonblock.js') ?>
+
+<!-- iCheck for radio button -->
+<?= $this->tag->javascriptInclude('assets/plugins/iCheck/icheck.min.js') ?>
         <!-- ./wrapper -->
     </body>
 </html>

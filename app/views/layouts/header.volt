@@ -9,6 +9,9 @@
 {{ stylesheet_link("assets/bower_components/font-awesome/css/font-awesome.min.css") }}
 <!-- Ionicons -->
 {{ stylesheet_link("assets/bower_components/Ionicons/css/ionicons.min.css") }}
+<!-- iCheck for radio button -->
+{{ stylesheet_link("assets/plugins/iCheck/all.css") }}
+{{ stylesheet_link("assets/plugins/iCheck/flat/blue.css") }}
 <!-- DataTables -->
 {{ stylesheet_link("assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css") }}
 <!-- Theme style -->
@@ -38,3 +41,5 @@
 {{ javascript_include("assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js") }}
 <!-- Pnotify -->
 {{ javascript_include("assets/pnotify/pnotify.js") }}
+<!-- Bootstrap Validation -->
+{{ javascript_include("assets/bower_components/bootstrap-validator/dist/validator.min.js") }}

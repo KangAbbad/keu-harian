@@ -51,7 +51,7 @@
     <div class="modal fade" id="modal-default">
       <div class="modal-dialog">
         <div class="modal-content">
-          <form class="addUser" action="user/add" method="POST">
+          <form class="addUser" id="addUser" action="user/add" method="POST">
             <div class="modal-header">
               <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
@@ -65,7 +65,7 @@
               </div>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
-                <select class="form-control" name="cabang_id">
+                <select class="form-control" name="cabang_id" required>
                   {{ Helpers.dataCabang() }}
                 </select>
               </div>
@@ -82,7 +82,7 @@
               <br>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
-                <input class="form-control" name="type" placeholder="Type" type="text">
+                <input class="form-control" id="type" name="type" placeholder="Type" type="text">
               </div>
             </div>
             <div class="modal-footer">
@@ -154,14 +154,25 @@
                 }
             });
             $('.close-modal').click();
-            $(document).ajaxStop(function(){
-              setTimeout(function(){
-                window.location.reload();
-              }, 1500);
-            });
+            $('#data_user').DataTable().ajax.reload();
         }
     });
   }
+
+  // $('#addUser').validate({
+  //   rules: {
+  //     type: {
+  //         required: true
+  //     },
+  //     action: "required"
+  //   },
+  //   messages: {
+  //       type: {
+  //           required: "Please enter some data"
+  //       },
+  //       action: "Please provide some data"
+  //   }
+  // });
 
   function send_data_edit(id) {
     $('.modal-title').text('Edit User ' + id);
@@ -203,11 +214,7 @@
                   }
               });
               $('.close-modal').click();
-              $(document).ajaxStop(function(){
-                setTimeout(function(){
-                  window.location.reload();
-                }, 1500);
-              });
+              $('#data_user').DataTable().ajax.reload();
           }
       });
   }
@@ -237,11 +244,7 @@
                 }
             });
             $('.close-modal').click();
-            $(document).ajaxStop(function(){
-            setTimeout(function(){
-                window.location.reload();
-              }, 1500);
-            });
+            $('#data_user').DataTable().ajax.reload();
         }
     });
   }

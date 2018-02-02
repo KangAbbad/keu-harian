@@ -58,12 +58,63 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
 
             $id = $cabang_id.$tanggal_id;
 
-            $query = "SELECT * FROM KeuHarian WHERE id LIKE '".$id."%' ";
-            $res = str_pad(mysqli_num_rows($query)+1, 2, "0", STR_PAD_LEFT);
-            $result = $id.$res;
+            $sql="SELECT MAX(created_at) FROM KeuHarian";
+
+            // $created_at=date('Y-m-d H:i:s');
+
+            // $sql_at="INSERT INTO KeuHarian (created_at) VALUES ($created_at)";
+            
+            $row=$this->modelsManager->executeQuery($sql/*,$sql_at*/)->toArray();
+
+            $last_id=$row['id'];
+            
+            $last2digit = (int)substr($last_id,-2,2);
+
+            $new_last_id = $last2digit +1;
+
+            if($new_last_id<10){
+                $new_last_id='0'.$new_last_id;
+            }
+
+            $new_id = $id.$new_last_id;
+
+            // if($new_id >= 1){
+            //     $new_id++;
+            // }
+            
+            // $query = "SELECT * FROM KeuHarian WHERE id LIKE '".$id."%' ";
+            // $res = str_pad(mysqli_num_rows($query)+1, 2, "0", STR_PAD_LEFT);
+            // $result = $id.$res;
+            // $sql="SELECT id FROM KeuHarian ORDER BY created_at DESC limit 1";
+            
+            // $row=$this->modelsManager->executeQuery($sql)->toArray();
+            
+            // $last_id=$row['id'];
+            // //echo "<pre>".print_r($row,1)."</pre>";die();
+            
+            // $last2digit = substr($last_id,-2,2);
+
+            // $created_at=date('Y-m-d H:i:s');
+
+            // $komponen_id = 'MGL'.date("dmy");
+
+            // if($new_last_id<10){
+            //     $new_last_id='0'.$new_last_id;
+            // }
+
+            // $new_last_id = $last2digit +1;
+
+            // // $new_id=$komponen_id.$new_last_id;
+            // if($new_id < 10){ 
+            //     $new_id=$komponen_id.'0'.$new_last_id; 
+            // }else{
+            //     $new_id=$komponen_id.$new_last_id;
+            // }
+
+            // $new_id++;
 
             $keu_harian->assign(array(
-                'id' => $result,
+                'id' => $new_id,
                 'cabang_id' => $cabang_id,
                 'tanggal' => $tanggal,
                 'nama_barang' => $nama_barang,
@@ -89,7 +140,7 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
                     $data_pesan_error = "$pesanError";
                 }
                 $notif['title']="Error";
-                $notif['text']="Isikan field dengan benar!";
+                $notif['text']="Isikan form data dengan benar!";
                 $notif['type']="error";
             }
             echo json_encode($notif);
@@ -135,7 +186,7 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
 
             if ($keu_harian->save()) {
                 $notif['title']="Sukses";
-                $notif['text']="Yuk gabung di *123*369*5# kamu bisa dapat hadiah Motor seharga 50jt lohh, buruan jangan sampai ketinggalan #GebyarBCA";
+                $notif['text']="Data Telah Berhasil Di Edit";
             }else{
                 $pesan_error = $keu_harian->getMessages();
                 $data_pesan_error ='';
@@ -143,7 +194,7 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
                     $data_pesan_error="$pesanError";
                 }
                 $notif['title']="Error";
-                $notif['text']="Waduh bang, data kaga kesimpen!";
+                $notif['text']="Gagal Mengedit Data";
                 $notif['type']="error";
             }
 
@@ -161,7 +212,7 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
 
             if($keu_harian->delete()){
                 $notif['title'] = "Sukses";
-                $notif['text'] = "Cek *123*92*5# untuk raih PULSA senilai 100rb+GRATIS RBT CS:817.";
+                $notif['text'] = "Berhasil Menghapus Data";
                 $notif['type'] = "success";
             } else {
                 $pesan_error = $keu_harian -> getMessages();
@@ -170,7 +221,7 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
                     $data_pesan_error = "$pesanError";
                 }
                 $notif['title'] = "Error";
-                $notif['text'] = "Waduh bang, data kaga kesimpen!";
+                $notif['text'] = "Gagal Menghapus";
                 $notif['type'] = "error";
             }
             echo json_encode($notif);
