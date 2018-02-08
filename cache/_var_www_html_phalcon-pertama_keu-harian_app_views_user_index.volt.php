@@ -23,7 +23,7 @@
           <div class="box">
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="data_user" class="table table-bordered table-striped">
+              <table id="data_user" class="table table-bordered table-striped" width="100%" cellspacing="0">
                 <thead>
                 <tr>
                   <th>No.</th>
@@ -34,7 +34,7 @@
                   <th>Action</th>
                 </tr>
                 </thead>
-                <tbody id="listUser">
+                <tbody id="listUser" align="center">
             
                 </tbody>
               </table>

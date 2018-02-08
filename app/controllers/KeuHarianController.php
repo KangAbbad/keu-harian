@@ -38,6 +38,8 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
     public function addKeuHarianAction()
     {
         $keu_harian = new KeuHarian();
+        
+        $err="";
 
         if($this->request->isPost()){
             $cabang_id = $this->request->getPost('cabang_id');
@@ -52,68 +54,45 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
             $kredit = $this->request->getPost('kredit');
             $keterangan = $this->request->getPost('keterangan');
             $pelaku = $this->request->getPost('pelaku');
-            
+            $tipe_transaksi = $this->request->getPost('tipe_transaksi');
             $date = new DateTime($tanggal);
             $tanggal_id = $date->format('ymd');
 
+            $notif_error=array(
+                'nama_barang'=>'Nama Barang Harus Diisi!<br>',
+                'jml_barang'=>'Jumlah Barang Harus Diisi!<br>',
+                'harga_satuan'=>'Harga Barang Harus Diisi!<br>',
+                'akun_id'=>'Akun Harus Diisi!<br>',
+                'satuan_barang_id'=>'Satuan Barang Harus Diisi!<br>',
+                'tipe_transaksi'=>'Tipe Transaksi Harus Diisi!<br>',
+                'pelaku'=>'Pelaku Harus Diisi!<br>'
+            );
+
+            foreach($notif_error as $field=>$message){
+                if($$field==''){$err.=$message;}
+            }
+
             $id = $cabang_id.$tanggal_id;
 
-            $sql="SELECT MAX(created_at) FROM KeuHarian";
+            $sql = "SELECT id FROM KeuHarian ORDER BY created_at DESC limit 1";
 
-            // $created_at=date('Y-m-d H:i:s');
+            $row = $this->modelsManager->executeQuery($sql)->toArray();
 
-            // $sql_at="INSERT INTO KeuHarian (created_at) VALUES ($created_at)";
-            
-            $row=$this->modelsManager->executeQuery($sql/*,$sql_at*/)->toArray();
+            $last_id = $row[0]['id'];
 
-            $last_id=$row['id'];
-            
-            $last2digit = (int)substr($last_id,-2,2);
+            $last2digit = substr($last_id,-2,2);
 
             $new_last_id = $last2digit +1;
 
             if($new_last_id<10){
                 $new_last_id='0'.$new_last_id;
             }
-
+    
             $new_id = $id.$new_last_id;
 
-            // if($new_id >= 1){
-            //     $new_id++;
-            // }
-            
-            // $query = "SELECT * FROM KeuHarian WHERE id LIKE '".$id."%' ";
-            // $res = str_pad(mysqli_num_rows($query)+1, 2, "0", STR_PAD_LEFT);
-            // $result = $id.$res;
-            // $sql="SELECT id FROM KeuHarian ORDER BY created_at DESC limit 1";
-            
-            // $row=$this->modelsManager->executeQuery($sql)->toArray();
-            
-            // $last_id=$row['id'];
-            // //echo "<pre>".print_r($row,1)."</pre>";die();
-            
-            // $last2digit = substr($last_id,-2,2);
+            $created_at = date('Y-m-d H:i:s');
 
-            // $created_at=date('Y-m-d H:i:s');
-
-            // $komponen_id = 'MGL'.date("dmy");
-
-            // if($new_last_id<10){
-            //     $new_last_id='0'.$new_last_id;
-            // }
-
-            // $new_last_id = $last2digit +1;
-
-            // // $new_id=$komponen_id.$new_last_id;
-            // if($new_id < 10){ 
-            //     $new_id=$komponen_id.'0'.$new_last_id; 
-            // }else{
-            //     $new_id=$komponen_id.$new_last_id;
-            // }
-
-            // $new_id++;
-
-            $keu_harian->assign(array(
+            $ins_data = array(
                 'id' => $new_id,
                 'cabang_id' => $cabang_id,
                 'tanggal' => $tanggal,
@@ -126,10 +105,13 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
                 'debit' => $debit,
                 'kredit' => $kredit,
                 'keterangan' => $keterangan,
-                'pelaku' => $pelaku
-            ));
+                'pelaku' => $pelaku,
+                'created_at' => $created_at
+            );
 
-            if($keu_harian->save()){
+            $keu_harian->assign($ins_data);
+
+            if($err=='' and $keu_harian->save()){
                 $notif['title']="Sukses";
                 $notif['text']="Berhasil input data";
                 $notif['type']="info";
@@ -140,13 +122,15 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
                     $data_pesan_error = "$pesanError";
                 }
                 $notif['title']="Error";
-                $notif['text']="Isikan form data dengan benar!";
+                $notif['text']=$err;
                 $notif['type']="error";
             }
             echo json_encode($notif);
             die();
         }
     }
+
+
 
     public function editKeuHarianAction()
     {
@@ -180,8 +164,7 @@ class KeuHarianController extends \Phalcon\Mvc\Controller
                 'debit'             => $debit,
                 'kredit'            => $kredit,
                 'keterangan'        => $keterangan,
-                'pelaku'            => $pelaku,
-               
+                'pelaku'            => $pelaku
             ));
 
             if ($keu_harian->save()) {

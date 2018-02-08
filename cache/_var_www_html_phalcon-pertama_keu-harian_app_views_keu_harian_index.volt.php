@@ -23,27 +23,27 @@
         <div class="box">
           <!-- /.box-header -->
           <div class="box-body">
-            <table id="data_keu_harian" class="table table-bordered table-striped">
+            <table id="data_keu_harian" class="table table-bordered table-striped" width="100%" cellspacing="0">
               <thead>
-              <tr>
-                <th>No.</th>
-                <!-- <th>Cabang</th> -->
-                <th>Tanggal</th>
-                <th>Nama Barang</th>
-                <th>Satuan Barang</th>
-                <th>Akun</th>
-                <th>Jumlah Barang</th>
-                <th>Harga Satuan</th>
-                <th>Total Harga</th>
-                <th>Debit</th>
-                <th>Kredit</th>
-                <th>Keterangan</th>
-                <th>Pelaku</th>
-                <th>Action</th>
-              </tr>
+                <tr>
+                  <th style="text-align:center;">No.</th>
+                  <th style="text-align:center;">Cabang</th>
+                  <th style="text-align:center;">Tanggal</th>
+                  <th style="text-align:center;">Nama Barang</th>
+                  <th style="text-align:center;">Satuan Barang</th>
+                  <th style="text-align:center;">Akun</th>
+                  <th style="text-align:center;">Jumlah Barang</th>
+                  <th style="text-align:center;">Harga Satuan</th>
+                  <th style="text-align:center;">Total Harga</th>
+                  <th style="text-align:center;">Debit</th>
+                  <th style="text-align:center;">Kredit</th>
+                  <th style="text-align:center;">Keterangan</th>
+                  <th style="text-align:center;">Pelaku</th>
+                  <th style="text-align:center;">Action</th>
+                </tr>
               </thead>
-              <tbody id="listKeuHarian">
-          
+              <tbody id="listKeuHarian" align="center">
+                
               </tbody>
             </table>
           </div>
@@ -59,7 +59,7 @@
   <div class="modal fade" id="modal-default">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form class="addKeuHarian" id="addKeuHarian" action="keu_harian/add" method="POST" data-toggle="validator" role="form">
+        <form class="addKeuHarian" action="keu_harian/add" method="POST" role="form">
           <div class="modal-header">
             <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span></button>
@@ -67,6 +67,7 @@
             <!-- sengaja dikosongkan, h4nya pake jQuery -->
             </h4>
           </div>
+
           <div class="modal-body">
             <div class="input-group-id">
               <input class="form-control id" name="id" type="hidden" id="id">
@@ -75,16 +76,15 @@
               <input type="hidden" name="cabang_id" value="MGL">
             </div>
             <div class="col-md-6">
-              <label for="">Tanggal</label>
+              <label for="tanggal">Tanggal</label>
               <div class="input-group date">
                 <div class="input-group-addon">
                   <i class="fa fa-calendar"></i>
                 </div>
-                <input type="date" class="form-control pull-right" name="tanggal" required>
-                <!-- <input type="text" class="form-control pull-right" name="tanggal" id="datepicker" placeholder="tanggal"> -->
+                <input type="date" class="form-control pull-right" id="tanggal" name="tanggal" required>
               </div>
               <br>
-              <label for="">Jumlah Barang</label>
+              <label for="jml_barang">Jumlah Barang</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-sort-alpha-asc"></i></span>
                 <input type="text" class="form-control numeric-only" name="jml_barang" id="jml_barang" onkeyup="hitung();" placeholder="Jumlah Barang" required>
@@ -92,13 +92,13 @@
               <br>
             </div>
             <div class="col-md-6">
-              <label for="">Nama Barang</label>
+              <label for="nama_barang">Nama Barang</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-shopping-bag"></i></span>
-                <input type="text" class="form-control alphabet-only" id="ay" name="nama_barang" placeholder="Nama Barang" required>
+                <input type="text" class="form-control alphabet-only" id="nama_barang" name="nama_barang" placeholder="Nama Barang" required>
               </div>
               <br>
-              <label for="">Harga Satuan</label>
+              <label for="harga_satuan">Harga Satuan</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-usd"></i></span>
                 <input type="text" class="form-control numeric-only" name="harga_satuan" id="harga_satuan" onkeyup="hitung();" placeholder="Harga Satuan" required>
@@ -106,7 +106,7 @@
               <br>
             </div>
             <div class="col-md-6">
-              <label for="">Akun</label>
+              <label for="akun_id">Akun</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-info-circle"></i></span>
                 <select class="form-control" name="akun_id" required>
@@ -114,7 +114,7 @@
                 </select>
               </div>
               <br>
-              <label for="">Total Harga</label>
+              <label for="total_harga">Total Harga</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-btc"></i></span>
                 <input type="text" class="form-control" name="total_harga" id="total_bayar" placeholder="Total Harga" readonly>
@@ -122,7 +122,7 @@
               <br>
             </div>
             <div class="col-md-6">
-              <label for="">Satuan barang</label>
+              <label for="satuan_barang_id">Satuan barang</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-list-ul"></i></span>
                 <select class="form-control" name="satuan_barang_id" required>
@@ -130,38 +130,39 @@
                 </select>
               </div>
               <br>
-              <br>
-              <div class="input-group">
-                <input type="radio" id="debit" class="flat-blue" name="iCheck">
+              <label for="tipe_transaksi">Tipe Transaksi</label>
+              <div class="input-group" style="margin-top:7px;">
+                <input type="radio" id="debit" class="flat-blue" name="tipe_transaksi">
                 &nbsp; Pemasukan &nbsp;
-                <input type="radio" id="kredit" class="flat-blue" name="iCheck">
+                <input type="radio" id="kredit" class="flat-blue" name="tipe_transaksi">
                 &nbsp; Pengeluaran &nbsp;
               </div>
               <br>
               <br>
             </div>
             <div class="col-md-6">
-              <label for="">Debit</label>
+              <label for="debit">Debit</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span>
                 <input type="text" class="form-control numeric-only debit" name="debit" placeholder="Debit" readonly>
               </div>
               <br>
-              <label for="">Kredit</label>
+              <label for="kredit">Kredit</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
                 <input type="text" class="form-control numeric-only kredit" name="kredit" placeholder="Kredit" readonly>
               </div>
               <br>
+              <br>
             </div>
-            <div class="col-md-6">
-              <label for="">Keterangan</label>
+            <div class="col-6">
+              <label for="keterangan">Keterangan</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-align-center"></i></span>
-                <textarea class="form-control" rows="3" name="keterangan" placeholder="Keterangan" required></textarea>
+                <textarea class="form-control" rows="4" name="keterangan" placeholder="Keterangan"></textarea>
               </div>
               <br>
-              <label for="">Pelaku</label>
+              <label for="pelaku">Pelaku</label>
               <div class="input-group">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-blind"></i></span>
@@ -176,7 +177,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary dropdown-toggle btnAction" onclick="return addKeuHarian();">
+            <button type="button" class="btn btn-primary dropdown-toggle btnAction" id="addButton" onclick="return addKeuHarian();">
               <!-- isinya pake jQuery -->
             </button>
           </div>
@@ -242,19 +243,11 @@ function addKeuHarian() {
                 sticker: false
               }
           });
-          $('.close-modal').click();
-          // if(res.success == true){
-          //     setTimeout(function(){
-          //         DataTable().reload();
-          //     }, 2000);
-          // }
-          $('#data_keu_harian').DataTable().ajax.reload();
-          $('.addKeuHarian')[0].reset();
-          // $(document).ajaxStop(function(){
-          //   setTimeout(function(){
-          //     window.location.reload();
-          //   }, 1000);
-          // });
+          if(res.type=='info'){
+            $('.close-modal').click();
+            $('#data_keu_harian').DataTable().ajax.reload();
+            $('.addKeuHarian')[0].reset();
+          }
       }
   });
 }
@@ -306,20 +299,17 @@ function editKeuHarian() {
           });
           $('.close-modal').click();
           $('#data_keu_harian').DataTable().ajax.reload();
-          // $(document).ajaxStop(function(){
-          //   setTimeout(function(){
-          //     window.location.reload();
-          //   }, 1000);
-          // });
-       
       }
   });
 }
 
-function send_data_delete(id){
+function send_data_delete(id,nama_barang){
+
+  var nama_barang =$(nama_barang).parent().parent().parent().find('td').eq(2).html();
+  
   $('input[name=id]').val(id);
   $('.modal-title').text('Delete Data ' + id);
-  $('.delete-desc').text('Yakin Ingin Menghapus ');
+  $('.delete-desc').text('Yakin Ingin Menghapus ' + nama_barang + ' ?');
   $('.btnAction').attr('onclick',"return deleteKeuHarian();");
   $('.btnAction').attr('class',"btn btn-outline btnAction");
   $('.btnAction').text('Delete Data');
@@ -343,11 +333,6 @@ function deleteKeuHarian() {
           });
           $('.close-modal').click();
           $('#data_keu_harian').DataTable().ajax.reload();
-          // $(document).ajaxStop(function(){
-          //   setTimeout(function(){
-          //     window.location.reload();
-          //   }, 1000);
-          // });
         }
     });
   }
@@ -363,29 +348,32 @@ function listKeuHarian(){
   });
 }
 
+// Resize Column DataTables
 $(document).ready(function(){
   var dataTable = $('#data_keu_harian').DataTable({
     "processing" : false,
     "serverSide" : true,
     "searching": true,
+    "ordering": false,
+    "columnDefs": [
+        {
+            "targets": [ 1 ],
+            "visible": false,
+            "searchable": false,
+        },
+        {
+          "width": "5%", "targets": [4,5,6]
+        },
+        {
+          "width": "8%", "targets": [7,8,9,10]
+        }
+    ],
     "ajax": {
       url: "keu_harian/getAjax",
       type: "post",
     }
   });
 });
-
-// $(document).ready(function() {
-//   $('#harga_satuan').keyup(function(){
-//     // Ambil data
-//     var jml_barang = parseInt($('#jml_barang').val());
-//     var harga_satuan = parseInt($('#harga_satuan').val());
-
-//     // Perhitungan
-//     var total_harga = jml_barang*harga_satuan;
-//     $('#total_harga').val(total_harga);
-//   });
-// });
 
 function hitung() {
   var total_bayar;
@@ -404,55 +392,6 @@ function hitung() {
     $('.debit').val("0");
     $('.kredit').val(total_bayar);
   });
-  
-  // $('#debit').val(total_bayar);
-  // $('#kredit').val(total_bayar);
-  // $("#pemasukan").attr('checked', true) == $("#debit").val(total_bayar);
-
-  // $(document).ready(function(){
-  //   $("#debit, #kredit").click(function(){
-  //       var radioValue = $("input[name='raad']:checked").val(total_bayar);
-  //       if(radioValue){
-  //         alert(radioValue);
-  //       }
-  //   });
-  // });
-
-  // $('#debit').on('click', function () {
-  //       var value = $("input[name=pemasukan]:checked").val(total_bayar);
-  //       alert(value);
-  // })
-  // $('#debit').val(total_bayar);
-  // $('#kredit').val(total_bayar);
-
-  // $("#pemasukan").on( "click", function() {
-  //   $("#pemasukan:checked").html( 
-  //     $('#debit').val(total_bayar)
-  //   );
-  // });
-
-  // Debit Kredit Auto-fill
-  // $(function(){
-  //   $(":radio.raad").click(function(){
-  //     $("#debit, #kredit").hide()
-  //     if($(this).attr("checked")){
-  //       $("#debit").val("#total_bayar");
-  //     }else{
-  //       $("#kredit").val("#total_bayar");
-  //     }
-  //   });
-  // });
-
-  // function debitKredit(){
-  //   $(":radio.rad").click(function(){
-  //     $("#debit, #kredit").hide()
-  //     if($(this).attr("checked")){
-  //       $("#debit").val("#total_bayar");
-  //     }else{
-  //       $("#kredit").val("#total_bayar");
-  //     }
-  //   }
-  // }
 }
 
 // Active Style Radio Button
@@ -479,13 +418,7 @@ $(document).ready(function() {
     $('.alphabet-only').regexMask(mask);
     $('.numeric-only').regexMask(mask2);
 });
-</script>
 
-<!-- PR 
-jika pemasukan : debit=total bayar, kredit=0
-jika pengeluarn debit=0, kredit=total bayar
-di bikin g bisa di edit aja
-otomatis kaya total bayar
-kemudian untuk angka jgn bisa di isi huruf atau simbol2
-form wajib di isi
--->
+// Tanggal auto-today
+document.getElementById("tanggal").valueAsDate = new Date();
+</script>

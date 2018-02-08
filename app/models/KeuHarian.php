@@ -139,7 +139,7 @@ class KeuHarian extends \Phalcon\Mvc\Model
     public function getDataKeuHarian()
     {
         $requestData = $_REQUEST;
-        // echo "<pre>".print_r($_REQUEST)."</pre>";
+
         $requestData = strtoupper($_REQUEST['search']['value']);
 
         $columns = array(
@@ -156,11 +156,6 @@ class KeuHarian extends \Phalcon\Mvc\Model
             10 => 'keterangan',
             11 => 'pelaku'
         );
-        // b.cabang_id, b.tanggal, b.nama_barang, b.akun_id, b.jml_barang, b.harga_satuan, b.satuan_barang_id, b.total_harga, b.debit, b.kredit, b.keterangan, b.pelaku
-        // $sql = "SELECT b.*, a.nama FROM KeuHarian AS b INNER JOIN RefCabang as a ON (b.cabang_id=a.id)";
-        // $sql = "SELECT A.*,B.nama  FROM KeuHarian AS A INNER JOIN RefCabang as B ON A.cabang_id=B.id";
-        // $sql = "SELECT kh.*, rc.nama as namacabang FROM RefCabang rc, KeuHarian kh WHERE kh.cabang_id = rc.nama";
-        // $sql = "SELECT kh.*, rc.nama as namacabang FROM KeuHarian kh, RefCabang rc WHERE kh.cabang_id = rc.id GROUP BY kh.tanggal";
         
         $sql = "SELECT * FROM KeuHarian";
         $query = $this->modelsManager->executeQuery($sql);
@@ -187,29 +182,11 @@ class KeuHarian extends \Phalcon\Mvc\Model
             $sql.= "OR pelaku LIKE '%".$requestSearch."%'";
             $query = $this->modelsManager->executeQuery($sql);
             $totalFiltered = count($query);
-
             
             $sql.=" ORDER BY ". $columns[$_REQUEST['order'][0]['column']]."   ".$_REQUEST['order'][0]['dir']."   LIMIT ".$_REQUEST['start']." ,".$_REQUEST['length']."   "; 
             $query = $this->modelManager->executeQuery(sql);
 
         } else {
-            //function menampilkan seluruh data
-            
-            // $sql = "SELECT A.*,B.nama  FROM KeuHarian AS A JOIN RefCabang as B ON A.cabang_id=B.id";
-            // $sql = "SELECT a.*, SUM(h.kredit) as Pengeluaran, 
-            //         date_format(h.tanggal, '%Y-%m') as Bulan,
-            //         h.akun_id as Kode 
-            //         FROM RefAkun a, KeuHarian h 
-            //         WHERE h.akun_id = a.id 
-            //         GROUP BY Bulan, h.akun_id";
-            
-            // $sql = "SELECT k.*, c.nama FROM KeuHarian k, RefCabang c WHERE k.cabang_id = c.id";
-            // $sql = "SELECT kh.*, rc.id FROM KeuHarian kh, RefCabang rc WHERE kh.cabang_id = rc.id";
-
-            // $sql = "SELECT b.cabang_id , a.nama FROM KeuHarian AS b INNER JOIN RefCabang as a ON (b.cabang_id=a.id) limit $start,$length";
-            // $sql = "SELECT * FROM KeuHarian limit $start,$length";
-
-            // $sql = "SELECT kh.*, rc.*, ra.*, sb.*, ru.* FROM KeuHarian kh, RefCabang rc, RefAkun ra, RefSatuanBarang sb, RefUser ru WHERE kh.cabang_id = rc.id AND kh.akun_id = ra.id AND kh.satuan_barang_id = sb.id AND kh.pelaku = ru.id ORDER BY kh.tanggal DESC limit $start, $length";
             $sql = "SELECT * FROM KeuHarian ORDER BY id DESC limit $start, $length";
             $query = $this->modelsManager->executeQuery($sql);
         }
@@ -231,7 +208,7 @@ class KeuHarian extends \Phalcon\Mvc\Model
             // $dataKeuHarian[] = $value->kh->kredit;
             // $dataKeuHarian[] = $value->kh->keterangan;
             // $dataKeuHarian[] = $value->ru->username;
-            // $dataKeuHarian[] = $value->cabang_id;
+            $dataKeuHarian[] = $value->cabang_id;
             $dataKeuHarian[] = $value->tanggal;
             $dataKeuHarian[] = $value->nama_barang;
             $dataKeuHarian[] = $value->satuan_barang_id;
@@ -246,7 +223,7 @@ class KeuHarian extends \Phalcon\Mvc\Model
             $dataKeuHarian[] = '
             <div class="btn-group-vertical">
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-default" onclick="return send_data_edit(\''.$value->id.'\');">Edit</button>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete" onclick="return send_data_delete(\''.$value->id.'\');">Delete</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete" onclick="return send_data_delete(\''.$value->id.'\',this);">Delete</button>
             </div>
             ';
 

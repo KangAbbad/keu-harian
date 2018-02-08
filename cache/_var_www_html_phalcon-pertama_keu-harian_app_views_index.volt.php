@@ -46,8 +46,12 @@
 <?= $this->tag->javascriptInclude('assets/pnotify/pnotify.js') ?>
 <!-- Bootstrap Validation -->
 <?= $this->tag->javascriptInclude('assets/bower_components/bootstrap-validator/dist/validator.min.js') ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css"/>
+
+<!-- Bootstrap Validator -->
+<!-- <?= $this->tag->javascriptInclude('assets/bower_components/bootstrap-validator/dist/validator.min.js') ?> -->
     </head>
-    <body class="hold-transition skin-blue">
+    <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
         <header class="main-header">
     <!-- Logo -->
