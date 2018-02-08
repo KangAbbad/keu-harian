@@ -1,6 +1,11 @@
 # Membuat Aplikasi CRUD Qodr Magelang
 
-- ### Menggunakan Phalcon
+- ### AdminLTE
+- ### Bootstrap
+- ### DataTables
+- ### iCheck
+- ### Pnotify
+- ## Phalcon
 
 -----------------------------------------------------------------------------------------------------------------------------------
 &copy; 2018 GhafirGroup
